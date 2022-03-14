@@ -1,7 +1,4 @@
 {
-    "composer/package-versions-deprecated": {
-        "version": "1.11.99.5"
-    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -96,8 +93,8 @@
     "doctrine/persistence": {
         "version": "1.3.8"
     },
-    "doctrine/reflection": {
-        "version": "1.2.2"
+    "doctrine/sql-formatter": {
+        "version": "1.1.2"
     },
     "egulias/email-validator": {
         "version": "3.1.2"
@@ -107,9 +104,6 @@
     },
     "incenteev/composer-parameter-handler": {
         "version": "v2.1.4"
-    },
-    "jdorn/sql-formatter": {
-        "version": "v1.2.17"
     },
     "laminas/laminas-code": {
         "version": "4.5.1"
@@ -137,6 +131,18 @@
     },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "sensio/framework-extra-bundle": {
+        "version": "5.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+        },
+        "files": [
+            "./config/packages/sensio_framework_extra.yaml"
+        ]
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.3.0"
@@ -250,6 +256,9 @@
             "./src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.4.39"
+    },
     "symfony/http-client-contracts": {
         "version": "v2.5.0"
     },
@@ -354,6 +363,9 @@
     },
     "symfony/property-info": {
         "version": "v4.4.37"
+    },
+    "symfony/proxy-manager-bridge": {
+        "version": "v4.4.39"
     },
     "symfony/routing": {
         "version": "4.4",
