@@ -244,11 +244,20 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v6.0.5"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v3.0.0"
+    },
     "symfony/http-foundation": {
         "version": "v4.4.39"
     },
     "symfony/http-kernel": {
         "version": "v4.4.39"
+    },
+    "symfony/intl": {
+        "version": "v6.0.5"
     },
     "symfony/mailer": {
         "version": "6.0",
@@ -362,6 +371,9 @@
             "config/routes.yaml"
         ]
     },
+    "symfony/runtime": {
+        "version": "v6.0.5"
+    },
     "symfony/security-bundle": {
         "version": "6.0",
         "recipe": {
@@ -449,17 +461,16 @@
         "version": "v5.4.6"
     },
     "symfony/web-profiler-bundle": {
-        "version": "4.4",
+        "version": "6.0",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "3.3",
-            "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
+            "version": "5.3",
+            "ref": "24bbc3d84ef2f427f82104f766014e799eefcc3e"
         },
         "files": [
-            "./config/packages/dev/web_profiler.yaml",
-            "./config/packages/test/web_profiler.yaml",
-            "./config/routes/dev/web_profiler.yaml"
+            "config/packages/web_profiler.yaml",
+            "config/routes/web_profiler.yaml"
         ]
     },
     "symfony/yaml": {
