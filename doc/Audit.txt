@@ -1,0 +1,8 @@
+// AUDIT SYMFONY 4.4
+https://blackfire.io/profiles/6135342e-b20b-4e2a-9756-c471ac25e913/graph
+
+// AUDIT SYMFONY 5.0
+https://blackfire.io/profiles/8436519c-15b9-47ac-8a48-978917b5c5ae/graph
+
+// AUDIT SYMFONY 6.0
+https://blackfire.io/profiles/966d315f-f139-424e-a149-dbf6cab35fa4/graph
