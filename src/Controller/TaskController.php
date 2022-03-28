@@ -38,6 +38,7 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $task->setAuthor($this->getUser());
             $this->em->persist($task);
             $this->em->flush();
 
