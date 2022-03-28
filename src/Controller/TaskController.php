@@ -18,7 +18,7 @@ class TaskController extends AbstractController
     {
         $this->em = $em;
     }
-    
+
     /**
      * @Route("/tasks", name="task_list")
      */
@@ -38,7 +38,6 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->em->persist($task);
             $this->em->flush();
 

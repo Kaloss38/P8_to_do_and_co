@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -12,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity("email")
  */
-class User implements UserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -69,7 +70,7 @@ class User implements UserInterface
         return $this->password;
     }
 
-    
+
     public function setPassword($password)
     {
         $this->password = $password;
@@ -85,7 +86,7 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-        /**
+    /**
      * The public representation of the user (e.g. a username, an email address, etc.)
      *
      * @see UserInterface

@@ -4,20 +4,21 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
     private $em;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher,)
     {
         $this->em = $em;
+        $this->passwordHasher = $passwordHasher;
     }
     /**
      * @Route("/users", name="user_list")
@@ -39,7 +40,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
-            // $user->setRoles([$form->get("roles_options")->getData()]);
+            $user->setRoles([$form->get("roles_options")->getData()]);
 
             $this->em->persist($user);
             $this->em->flush();
