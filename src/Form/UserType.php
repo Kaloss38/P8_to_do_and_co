@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,8 +36,17 @@ class UserType extends AbstractType
                 'choices' => [
                     'administrateur' => 'ROLE_ADMIN',
                     'standard' => 'ROLE_USER'
-                ]
+                ],
+                'data' => $options['actual_role']
             ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+            'actual_role' => 'ROLE_USER'
+        ]);
     }
 }

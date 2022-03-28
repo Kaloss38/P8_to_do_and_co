@@ -54,12 +54,13 @@ class UserController extends AbstractController
     #[Route('/users/{id}/edit', name: 'user_edit', methods: ['GET', 'POST'])]
     public function editAction(User $user, Request $request)
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, ['actual_role' => $user->getRoles()[0]]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+            $user->setRoles([$form->get("roles_options")->getData()]);
 
             $this->em->flush();
 
