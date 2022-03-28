@@ -19,17 +19,13 @@ class TaskController extends AbstractController
         $this->em = $em;
     }
 
-    /**
-     * @Route("/tasks", name="task_list")
-     */
+    #[Route('/tasks', name: 'task_list', methods: ['GET'])]
     public function listAction(TaskRepository $taskRepo)
     {
         return $this->render('task/list.html.twig', ['tasks' => $taskRepo->findAll()]);
     }
 
-    /**
-     * @Route("/tasks/create", name="task_create")
-     */
+    #[Route('/tasks/create', name: 'task_create', methods: ['GET', 'POST'])]
     public function createAction(Request $request)
     {
         $task = new Task();
@@ -50,9 +46,7 @@ class TaskController extends AbstractController
         return $this->render('task/create.html.twig', ['form' => $form->createView()]);
     }
 
-    /**
-     * @Route("/tasks/{id}/edit", name="task_edit")
-     */
+    #[Route('/tasks/{id}/edit', name: 'task_edit', methods: ['GET', 'POST'])]
     public function editAction(Task $task, Request $request)
     {
         $form = $this->createForm(TaskType::class, $task);
@@ -73,9 +67,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/tasks/{id}/toggle", name="task_toggle")
-     */
+    #[Route('/tasks/{id}/toggle', name: 'task_toggle', methods: ['GET'])]
     public function toggleTaskAction(Task $task)
     {
         $task->toggle(!$task->isDone());
@@ -86,9 +78,7 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('task_list');
     }
 
-    /**
-     * @Route("/tasks/{id}/delete", name="task_delete")
-     */
+    #[Route('/tasks/{id}/delete', name: 'task_delete', methods: ['GET'])]
     public function deleteTaskAction(Task $task)
     {
         $this->em->remove($task);
