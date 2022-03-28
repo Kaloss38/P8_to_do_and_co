@@ -16,7 +16,7 @@ class UserController extends AbstractController
     private $em;
     private $passwordHasher;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher,)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher)
     {
         $this->em = $em;
         $this->passwordHasher = $passwordHasher;

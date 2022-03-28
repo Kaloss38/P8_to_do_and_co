@@ -7,7 +7,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    
     #[Route('/', name: 'home', methods: ['GET'])]
     public function indexAction()
     {
