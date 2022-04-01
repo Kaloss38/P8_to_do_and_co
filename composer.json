@@ -38,6 +38,7 @@
         "doctrine/annotations": "^1.13"       
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^6.7",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpro/grumphp": "^1.10",
         "phpstan/phpstan": "^1.5",
