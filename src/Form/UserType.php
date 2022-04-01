@@ -2,10 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -23,6 +26,27 @@ class UserType extends AbstractType
                 'second_options' => ['label' => 'Tapez le mot de passe à nouveau'],
             ])
             ->add('email', EmailType::class, ['label' => 'Adresse email'])
+            ->add('roles_options', ChoiceType::class, [
+                'mapped' => false,
+                'label' => "Rôle de l'utilisateur",
+                'invalid_message' => "Veuillez choisir l'une des deux possibilités de rôles.",
+                'required' => true,
+                'expanded' => true,
+                'multiple' => false,
+                'choices' => [
+                    'administrateur' => 'ROLE_ADMIN',
+                    'standard' => 'ROLE_USER'
+                ],
+                'data' => $options['actual_role']
+            ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+            'actual_role' => 'ROLE_USER'
+        ]);
     }
 }
