@@ -97,7 +97,7 @@ class SecurityControllerTest extends WebTestCase
 
         $this->client->followRedirect();
 
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', "Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !");
     }
 
@@ -109,7 +109,7 @@ class SecurityControllerTest extends WebTestCase
         $this->client->followRedirect();
         $this->client->followRedirect();
 
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Connectez-vous');
     }
 }
