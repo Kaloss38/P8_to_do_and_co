@@ -140,38 +140,38 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorExists('div.alert.alert-success');
     }
     
-    // public function testDeleteTask()
-    // {
-    //     $this->userLogin();
+    public function testDeleteTask()
+    {
+        $this->userLogin();
 
-    //     $this->client->request('GET', '/');
+        $this->client->request('GET', '/');
 
-    //     $crawler = $this->client->clickLink('Consulter la liste des tâches à faire');
+        $crawler = $this->client->clickLink('Consulter la liste des tâches à faire');
 
-    //     $this->assertSelectorTextContains('h1', 'Liste des tâches');
+        $this->assertSelectorTextContains('h1', 'Liste des tâches');
 
-    //     $form = $crawler->filter('form')->selectButton('Supprimer')->eq(1)->form();
-    //     $crawler = $this->client->submit($form);
+        $form = $crawler->filter('form')->selectButton('Supprimer')->eq(1)->form();
+        $crawler = $this->client->submit($form);
 
-    //     $this->client->followRedirect();
-    //     $this->assertSelectorExists('div.alert.alert-success');
-    // }
+        $this->client->followRedirect();
+        $this->assertSelectorExists('div.alert.alert-success');
+    }
 
-    // public function testDeleteTaskWithAdminRole()
-    // {
-    //     $this->adminLogin();
+    public function testDeleteTaskWithAdminRole()
+    {
+        $this->adminLogin();
 
-    //     $this->client->request('GET', '/');
+        $this->client->request('GET', '/');
 
-    //     $crawler = $this->client->clickLink('Consulter la liste des tâches à faire');
+        $crawler = $this->client->clickLink('Consulter la liste des tâches à faire');
 
-    //     $this->assertSelectorTextContains('h1', 'Liste des tâches');
+        $this->assertSelectorTextContains('h1', 'Liste des tâches');
 
-    //     $form = $crawler->filter('form')->selectButton('Supprimer')->eq(1)->form();
-    //     $crawler = $this->client->submit($form);
+        $form = $crawler->filter('form')->selectButton('Supprimer')->eq(1)->form();
+        $crawler = $this->client->submit($form);
 
-    //     $this->client->followRedirect();
-    //     $this->assertSelectorExists('div.alert.alert-success');
-    // }
+        $this->client->followRedirect();
+        $this->assertSelectorExists('div.alert.alert-success');
+    }
     
 }
