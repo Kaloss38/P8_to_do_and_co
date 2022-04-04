@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class SecurityControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
-
+    
     public function setUp(): void
     {
         $this->client = static::createClient();
