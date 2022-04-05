@@ -52,7 +52,7 @@ class UserControllerTest extends WebTestCase
 
     public function testEditUserWithoutLogin(): void
     {
-        $this->client->request('GET', '/users/2/edit');
+        $this->client->request('GET', '/users/83/edit');
 
         $this->assertResponseStatusCodeSame(302);
         $this->assertResponseRedirects('http://localhost/login');
@@ -70,7 +70,7 @@ class UserControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', "Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !");
 
-        $this->client->request('GET', '/users/4/edit');
+        $this->client->request('GET', '/users/83/edit');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', "Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !");
     }
@@ -85,7 +85,7 @@ class UserControllerTest extends WebTestCase
         $this->client->request('GET', '/users/create');
         $this->assertResponseStatusCodeSame(200);
 
-        $this->client->request('GET', '/users/4/edit');
+        $this->client->request('GET', '/users/83/edit');
         $this->assertResponseStatusCodeSame(200);
     }
 
@@ -122,7 +122,7 @@ class UserControllerTest extends WebTestCase
     {
         $this->adminLogin();
 
-        $crawler = $this->client->request('GET', '/users/4/edit');
+        $crawler = $this->client->request('GET', '/users/83/edit');
 
         $this->assertSelectorTextContains('h1', 'Modifier simple_user_2');
 
