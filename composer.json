@@ -38,10 +38,13 @@
         "doctrine/annotations": "^1.13"       
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^6.7",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpro/grumphp": "^1.10",
         "phpstan/phpstan": "^1.5",
+        "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "^6.0",
+        "symfony/css-selector": "^6.0",
         "symfony/debug-bundle": "^6.0",
         "symfony/dotenv": "^6.0",
         "symfony/maker-bundle": "^1.38",
