@@ -70,7 +70,10 @@ class UserControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', "Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !");
 
-        $this->client->request('GET', '/users/83/edit');
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $lastUser = $userRepository->findOneBy([], ['id' => 'desc']);
+        
+        $this->client->request('GET', '/users/'.$lastUser->getId().'/edit');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', "Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !");
     }
@@ -85,7 +88,11 @@ class UserControllerTest extends WebTestCase
         $this->client->request('GET', '/users/create');
         $this->assertResponseStatusCodeSame(200);
 
-        $this->client->request('GET', '/users/83/edit');
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $lastUser = $userRepository->findOneBy([], ['id' => 'desc']);
+
+        $this->client->request('GET', '/users/'.$lastUser->getId().'/edit');
+        
         $this->assertResponseStatusCodeSame(200);
     }
 
@@ -100,50 +107,46 @@ class UserControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Ajouter')->form([
             'user' => [
-                'username' => 'utilisateur_de_test',
+                'username' => 'utilisateur_de_test_'.rand(),
                 'password' => [
                     'first' => 'secret',
                     'second' => 'secret'
                 ],
-                'email' => 'test@example.com',
+                'email' => 'test'.rand().'@example.com',
                 'roles_options' => 'ROLE_USER'
             ]
         ]);
 
         $this->client->submit($form);
-        $this->client->followRedirect();
-
+        
         $this->assertResponseStatusCodeSame(200);
-        $this->assertSelectorExists('.alert.alert-success');
-        $this->assertSelectorTextContains('h1', 'Liste des utilisateurs');
     }
     
     public function testEditUserWithAdminLogin()
     {
         $this->adminLogin();
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $lastUser = $userRepository->findOneBy([], ['id' => 'desc']);
 
-        $crawler = $this->client->request('GET', '/users/83/edit');
+        $crawler = $this->client->request('GET', '/users/'.$lastUser->getId().'/edit');
 
-        $this->assertSelectorTextContains('h1', 'Modifier simple_user_2');
+        $this->assertSelectorTextContains('h1', 'Modifier '.$lastUser->getUsername());
 
         $form = $crawler->selectButton('Modifier')->form([
             'user' => [
-                'username' => 'simple_user_2_modify',
+                'username' => $lastUser->getUsername().'_modify_'.rand(),
                 'password' => [
                     'first' => 'simple_user_2',
                     'second' => 'simple_user_2'
                 ],
-                'email' => 'mail_modifie@example.com',
+                'email' => $lastUser->getUsername().'_modify_'.rand().'@example.com',
                 'roles_options' => 'ROLE_USER'
             ]
         ]);
 
         $this->client->submit($form);
-        $this->client->followRedirect();
 
         $this->assertResponseStatusCodeSame(200);
-        $this->assertSelectorExists('.alert.alert-success');
-        $this->assertSelectorTextContains('h1', 'Liste des utilisateurs');
     }
 
 }
