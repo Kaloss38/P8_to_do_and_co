@@ -100,26 +100,26 @@ class UserControllerTest extends WebTestCase
     {
         $this->adminLogin();
 
-        $this->client->request('GET', '/');
-        $crawler = $this->client->clickLink('Créer un utilisateur');
+        $crawler = $this->client->request('GET', '/users/create');
 
         $this->assertSelectorTextContains('h1', 'Créer un utilisateur');
 
         $form = $crawler->selectButton('Ajouter')->form([
             'user' => [
-                'username' => 'utilisateur_de_test_'.rand(),
+                'username' => 'utilisateur_test',
                 'password' => [
-                    'first' => 'secret',
-                    'second' => 'secret'
+                    'first' => 'password',
+                    'second' => 'password'
                 ],
-                'email' => 'test'.rand().'@example.com',
+                'email' => 'utilisateur_de_test_@example.com',
                 'roles_options' => 'ROLE_USER'
             ]
         ]);
 
         $this->client->submit($form);
-        
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertResponseRedirects('/users');
+        $this->client->followRedirect();
+        $this->assertSelectorExists('.alert.alert-success');
     }
     
     public function testEditUserWithAdminLogin()
@@ -134,19 +134,21 @@ class UserControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Modifier')->form([
             'user' => [
-                'username' => $lastUser->getUsername().'_modify_'.rand(),
+                'username' => $lastUser->getUsername().'_modify',
                 'password' => [
                     'first' => 'simple_user_2',
                     'second' => 'simple_user_2'
                 ],
-                'email' => $lastUser->getUsername().'_modify_'.rand().'@example.com',
+                'email' => $lastUser->getUsername().'_modify_@example.com',
                 'roles_options' => 'ROLE_USER'
             ]
         ]);
 
         $this->client->submit($form);
 
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertResponseRedirects('/users');
+        $this->client->followRedirect();
+        $this->assertSelectorExists('.alert.alert-success');
     }
 
 }
