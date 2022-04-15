@@ -27,6 +27,9 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <!-- <exlude>
+            <directory suffix=".php">src/Traits</directory>
+        </exlude> -->
     </coverage>
 
     <listeners>

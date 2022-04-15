@@ -24,6 +24,7 @@ Unit and functionnal tests are implemented with phpUnit during this iteration.
 - PHP 8.1.1 (with xdebug extensions enabled)
 - Composer
 - Symfony @CLI
+- mySQL
 
 ### Setup / Installation
 
