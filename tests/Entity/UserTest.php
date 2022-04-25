@@ -20,6 +20,8 @@ class UserTest extends TestCase
 
     private $hasher;
 
+    private $user;
+
     /** @var UserManager */
     private $entity;
 
@@ -35,7 +37,32 @@ class UserTest extends TestCase
             $this->entityManager,
             $this->hasher
         );
+        $this->user = new User();
     }
+
+    public function testId(): void
+    {
+        $this->assertNull($this->user->getId());
+    }
+
+    public function testUsername(): void
+    {
+        $this->user->setUsername('name');
+        $this->assertSame('name', $this->user->getUsername());
+    }
+
+    public function testEmail(): void
+    {
+        $this->user->setEmail('name@name.fr');
+        $this->assertSame('name@name.fr', $this->user->getEmail());
+    }
+
+    public function testPassword(): void
+    {
+        $this->user->setPassword('password');
+        $this->assertSame('password', $this->user->getPassword());
+    }
+
 
     public function testUserHasRoles()
     {
@@ -82,4 +109,5 @@ class UserTest extends TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
 }
