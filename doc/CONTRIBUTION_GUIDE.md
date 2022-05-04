@@ -71,3 +71,38 @@ git branch authentication
 ~~~~
 git commit -m "Implement authentication, add UserController and User entity"
 ~~~~
+
+- All your code (variables, methods, remark) must be in English
+
+- Keep logic in your class, controllers and methods naming : 
+```
+example for naming an article controller :
+
+class ArticleController extends AbstractController 
+{
+    public function list()
+    {
+        //
+    }
+
+    public function create()
+    {
+        //
+    }
+
+    public function view($id)
+    {
+        //
+    }
+
+    public function update($id)
+    {
+        //
+    }
+
+    public function delete($id)
+    {
+        //
+    }
+}
+```
