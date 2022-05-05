@@ -104,14 +104,16 @@ class UserControllerTest extends WebTestCase
 
         $this->assertSelectorTextContains('h1', 'Créer un utilisateur');
 
+        $rdmNumber = rand(0,2000);
+
         $form = $crawler->selectButton('Ajouter')->form([
             'user' => [
-                'username' => 'utilisateur_test',
+                'username' => 'utilisateur_test_'.$rdmNumber,
                 'password' => [
                     'first' => 'password',
                     'second' => 'password'
                 ],
-                'email' => 'utilisateur_de_test_@example.com',
+                'email' => 'utilisateur_de_test_'.$rdmNumber.'@example.com',
                 'roles_options' => 'ROLE_USER'
             ]
         ]);
@@ -131,15 +133,17 @@ class UserControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/users/'.$lastUser->getId().'/edit');
 
         $this->assertSelectorTextContains('h1', 'Modifier '.$lastUser->getUsername());
+        
+        $rdmNumber = rand(0,2000);
 
         $form = $crawler->selectButton('Modifier')->form([
             'user' => [
-                'username' => $lastUser->getUsername().'_modify',
+                'username' => $lastUser->getUsername().$rdmNumber,
                 'password' => [
-                    'first' => 'simple_user_2',
-                    'second' => 'simple_user_2'
+                    'first' => 'password123',
+                    'second' => 'password123'
                 ],
-                'email' => $lastUser->getUsername().'_modify_@example.com',
+                'email' => $lastUser->getUsername().'_modify@example.com',
                 'roles_options' => 'ROLE_USER'
             ]
         ]);

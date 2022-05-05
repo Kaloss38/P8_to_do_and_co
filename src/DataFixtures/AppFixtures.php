@@ -90,6 +90,20 @@ class AppFixtures extends Fixture
         
         $manager->persist($task6);
 
+        $task7 = new Task();
+        $task7->setTitle("Une autre tâche 3");
+        $task7->setContent("Créée par l'administrateur");
+        $task7->setAuthor($useradmin);
+        
+        $manager->persist($task7);
+
+        $task8 = new Task();
+        $task8->setTitle("Une autre tâche 4");
+        $task8->setContent("Créée par l'administrateur");
+        $task8->setAuthor($useradmin);
+        
+        $manager->persist($task8);
+
         $manager->flush();
     }
 }
